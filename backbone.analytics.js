@@ -1,5 +1,6 @@
 // Created by Kendall Buchanan, (https://github.com/kendagriff)
 // Modified by Paul English, (https://github.com/nrub)
+// Modified by Sandosh Vasudevan, (https://github.com/sandosh)
 // MIT licence
 // Version 0.0.2
 
@@ -15,8 +16,11 @@
     });
 
     if (!/^\//.test(fragment)) fragment = '/' + fragment;
-    if (window._gaq !== undefined) window._gaq.push(['_trackPageview', fragment]);
-
+    if (window._gaq !== undefined) {
+      _.defer(function(){
+        window._gaq.push(['_trackPageview', fragment]);
+      });
+    }
     return matched;
   };
 
